@@ -4,29 +4,27 @@ function randomchoice() {
   return choices[choice];
 }
 function playgame() {
-  let pwin = 0;
-  let cwin = 0;
   let PWIN = 0;
   let CWIN = 0;
+  let winner;
   for (let i = 0; i <= 4; i++) {
-    playround(pwin, cwin);
-    if (pwin > cwin) {
-      PWIN = PWIN + pwin;
-      console.log(PWIN);
-    } else if (cwin > pwin) {
-      CWIN = CWIN + cwin;
+    winner = playround();
+    if (winner == "player") {
+      PWIN = PWIN + 1;
+    } else if (winner == "computer") {
+      CWIN = CWIN + 1;
     }
   }
 
   if (CWIN > PWIN) {
-    console.log(`The Player wins by ${CWIN} points`);
+    console.log(`The Computer wins by ${CWIN} points`);
   } else if (PWIN > CWIN) {
-    console.log(`The Computer wins by ${PWIN} points`);
+    console.log(`The Player wins by ${PWIN} points`);
   } else {
     console.log("TIE");
   }
 }
-function playround(pwin, cwin) {
+function playround() {
   let playerChoice = prompt("ROCK , PAPER, SCISSORS");
   let compChoice = randomchoice();
   playerChoice = playerChoice.toLowerCase();
@@ -34,17 +32,17 @@ function playround(pwin, cwin) {
     console.log(`player:${playerChoice}`);
     console.log(`computer:${compChoice}`);
     console.log("player wins");
-    pwin = pwin + 1;
+    return "player";
   } else if (playerChoice === "paper" && compChoice === "rock") {
     console.log(`player:${playerChoice}`);
     console.log(`computer:${compChoice}`);
     console.log("player wins");
-    pwin = pwin + 1;
+    return "player";
   } else if (playerChoice === "scissors" && compChoice === "paper") {
     console.log(`player:${playerChoice}`);
     console.log(`computer:${compChoice}`);
     console.log("player wins");
-    pwin = pwin + 1;
+    return "player";
   } else if (playerChoice === compChoice) {
     console.log(`player:${playerChoice}`);
     console.log(`computer:${compChoice}`);
@@ -53,8 +51,7 @@ function playround(pwin, cwin) {
     console.log(`player:${playerChoice}`);
     console.log(`computer:${compChoice}`);
     console.log("Computer wins");
-    cwin = cwin + 1;
+    return "computer";
   }
-  return pwin, cwin;
 }
 playgame();
