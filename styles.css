@@ -73,6 +73,7 @@ p {
   display: flex;
   justify-content: center;
   font-size: larger;
+  margin-left: 5%;
 }
 .wins {
   padding-left: 50%;
