@@ -12,8 +12,16 @@ sbut.textContent = "SCISSORS";
 rbut.classList.add("butt");
 pbut.classList.add("butt");
 sbut.classList.add("butt");
-
+const countDiv = document.createElement("div");
+const winDiv = document.createElement("div");
+countDiv.classList.add("countDiv");
+document.body.appendChild(countDiv);
 document.body.appendChild(div1);
+let PWIN = 0;
+let CWIN = 0;
+
+countDiv.innerHTML = `<div class =pname><h2 id="h2-1">PLAYER    </h2> <h2 id="h2-2">   COMPUTER</h2><br></div>
+<div class="count"><p>${PWIN}</p>&nbsp;&nbsp;&nbsp;<p> ${CWIN}</p></div>`;
 
 div1.appendChild(rbut);
 div1.appendChild(pbut);
@@ -34,52 +42,75 @@ function randomchoice() {
   return choices[choice];
 }
 function playgame(playerChoice) {
-  let PWIN = 0;
-  let CWIN = 0;
   let winner;
 
   winner = playround(playerChoice);
   if (winner == "player") {
     PWIN = PWIN + 1;
+    countDiv.innerHTML = `<div class =pname><h2 id="h2-1">PLAYER    </h2> <h2 id="h2-2">   COMPUTER</h2><br></div>
+<div class="count"><p>${PWIN}</p>&nbsp;&nbsp;&nbsp;<p> ${CWIN}</p></div>`;
   } else if (winner == "computer") {
     CWIN = CWIN + 1;
+    countDiv.innerHTML = `<div class =pname><h2 id="h2-1">PLAYER    </h2> <h2 id="h2-2">   COMPUTER</h2><br></div>
+<div class="count"><p>${PWIN}</p>&nbsp;&nbsp;&nbsp;<p> ${CWIN}</p></div>`;
+  }
+  if (CWIN == 5) {
+    alert(`The Computer wins the game`);
+    window.addEventListener("beforeunload", function () {
+      window.location.reload();
+    });
+  } else if (PWIN == 5) {
+    alert(`The Player wins the game`);
+    window.addEventListener("beforeunload", function () {
+      window.location.reload();
+    });
   }
 }
+function display(playerChoice, compChoice) {
+  const newDiv = document.createElement("div");
+  newDiv.innerHTML = `<p>player:${playerChoice}</p>
+  <p>computer:${compChoice}</p>`;
+  newDiv.classList.add("newDiv");
 
-//   if (CWIN > PWIN) {
-//     console.log(`The Computer wins by ${CWIN} points`);
-//   } else if (PWIN > CWIN) {
-//     console.log(`The Player wins by ${PWIN} points`);
-//   } else {
-//     console.log("TIE");
-//   }
-
+  document.body.appendChild(newDiv);
+}
 function playround(playerChoice) {
   let compChoice = randomchoice();
   playerChoice = playerChoice.toLowerCase();
   if (playerChoice === "rock" && compChoice === "scissors") {
-    console.log(`player:${playerChoice}`);
-    console.log(`computer:${compChoice}`);
-    console.log("player wins");
+    display(playerChoice, compChoice);
+    const wins = document.createElement("p");
+    wins.classList.add("wins");
+    wins.textContent = "Player Wins!!";
+    document.body.append(wins);
     return "player";
   } else if (playerChoice === "paper" && compChoice === "rock") {
-    console.log(`player:${playerChoice}`);
-    console.log(`computer:${compChoice}`);
-    console.log("player wins");
+    display(playerChoice, compChoice);
+    const wins = document.createElement("p");
+    wins.classList.add("wins");
+    wins.textContent = "Player Wins!!";
+
+    document.body.append(wins);
     return "player";
   } else if (playerChoice === "scissors" && compChoice === "paper") {
-    console.log(`player:${playerChoice}`);
-    console.log(`computer:${compChoice}`);
-    console.log("player wins");
+    display(playerChoice, compChoice);
+    const wins = document.createElement("p");
+    wins.classList.add("wins");
+    wins.textContent = "Player Wins!!";
+    document.body.append(wins);
     return "player";
   } else if (playerChoice === compChoice) {
-    console.log(`player:${playerChoice}`);
-    console.log(`computer:${compChoice}`);
-    console.log("TIE");
+    display(playerChoice, compChoice);
+    const wins = document.createElement("p");
+    wins.classList.add("wins");
+    wins.textContent = "   TIE!!";
+    document.body.append(wins);
   } else {
-    console.log(`player:${playerChoice}`);
-    console.log(`computer:${compChoice}`);
-    console.log("Computer wins");
+    display(playerChoice, compChoice);
+    const wins = document.createElement("p");
+    wins.classList.add("wins");
+    wins.textContent = "computer wins!!";
+    document.body.append(wins);
     return "computer";
   }
 }
