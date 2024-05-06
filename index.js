@@ -68,7 +68,7 @@ function playgame(playerChoice) {
 }
 function display(playerChoice, compChoice) {
   const newDiv = document.createElement("div");
-  newDiv.innerHTML = `<p>player:${playerChoice}</p>
+  newDiv.innerHTML = `<p>player:${playerChoice}</p><div class="space"></div>
   <p>computer:${compChoice}</p>`;
   newDiv.classList.add("newDiv");
 
