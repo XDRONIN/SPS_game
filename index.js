@@ -6,9 +6,9 @@ rbut.setAttribute("id", "rbut");
 pbut.setAttribute("id", "pbut");
 sbut.setAttribute("id", "sbut");
 div1.setAttribute("id", "div1");
-rbut.textContent = "ROCK";
-pbut.textContent = "PAPER";
-sbut.textContent = "SCISSORS";
+rbut.textContent = "✊";
+pbut.textContent = "🤚";
+sbut.textContent = "✌️";
 rbut.classList.add("butt");
 pbut.classList.add("butt");
 sbut.classList.add("butt");
@@ -19,7 +19,7 @@ document.body.appendChild(countDiv);
 document.body.appendChild(div1);
 let PWIN = 0;
 let CWIN = 0;
-
+const newDiv = document.createElement("div");
 countDiv.innerHTML = `<div class =pname><h2 id="h2-1">PLAYER    </h2> <h2 id="h2-2">   COMPUTER</h2><br></div>
 <div class="count"><p>${PWIN}</p>&nbsp;&nbsp;&nbsp;<p> ${CWIN}</p></div>`;
 
@@ -67,7 +67,7 @@ function playgame(playerChoice) {
   }
 }
 function display(playerChoice, compChoice) {
-  const newDiv = document.createElement("div");
+  newDiv.innerHTML = "";
   newDiv.innerHTML = `<p>player:${playerChoice}</p><div class="space"></div>
   <p>computer:${compChoice}</p>`;
   newDiv.classList.add("newDiv");
