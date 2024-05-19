@@ -26,6 +26,8 @@ countDiv.innerHTML = `<div class =pname><h2 id="h2-1">PLAYER    </h2> <h2 id="h2
 div1.appendChild(rbut);
 div1.appendChild(pbut);
 div1.appendChild(sbut);
+const wins = document.createElement("p");
+wins.classList.add("wins");
 
 rbut.addEventListener("click", () => {
   playgame("rock");
@@ -43,6 +45,7 @@ function randomchoice() {
 }
 function playgame(playerChoice) {
   let winner;
+  wins.textContent = "";
 
   winner = playround(playerChoice);
   if (winner == "player") {
@@ -77,38 +80,36 @@ function display(playerChoice, compChoice) {
 function playround(playerChoice) {
   let compChoice = randomchoice();
   playerChoice = playerChoice.toLowerCase();
+
+  document.body.append(wins);
+
   if (playerChoice === "rock" && compChoice === "scissors") {
     display(playerChoice, compChoice);
-    const wins = document.createElement("p");
-    wins.classList.add("wins");
+
     wins.textContent = "Player Wins!!";
     document.body.append(wins);
     return "player";
   } else if (playerChoice === "paper" && compChoice === "rock") {
     display(playerChoice, compChoice);
-    const wins = document.createElement("p");
-    wins.classList.add("wins");
+
     wins.textContent = "Player Wins!!";
 
     document.body.append(wins);
     return "player";
   } else if (playerChoice === "scissors" && compChoice === "paper") {
     display(playerChoice, compChoice);
-    const wins = document.createElement("p");
-    wins.classList.add("wins");
+
     wins.textContent = "Player Wins!!";
     document.body.append(wins);
     return "player";
   } else if (playerChoice === compChoice) {
     display(playerChoice, compChoice);
-    const wins = document.createElement("p");
-    wins.classList.add("wins");
+
     wins.textContent = "   TIE!!";
     document.body.append(wins);
   } else {
     display(playerChoice, compChoice);
-    const wins = document.createElement("p");
-    wins.classList.add("wins");
+
     wins.textContent = "computer wins!!";
     document.body.append(wins);
     return "computer";
